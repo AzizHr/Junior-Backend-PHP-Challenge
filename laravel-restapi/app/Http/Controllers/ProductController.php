@@ -38,7 +38,7 @@ class ProductController extends Controller {
     }
 
     /**
-     * Store a newly created product in storage.
+     * Store a newly created product.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -63,7 +63,7 @@ class ProductController extends Controller {
     
 
     /**
-     * Update the specified product in storage.
+     * Update the specified product.
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
@@ -85,7 +85,7 @@ class ProductController extends Controller {
     }
 
     /**
-     * Remove the specified product from storage.
+     * Remove the specified product.
      *
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
