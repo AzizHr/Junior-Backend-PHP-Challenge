@@ -4,9 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\CategoryRepositoryInterface;
-use App\Repositories\CategoryRepositoryImpl;
+use App\Repositories\Impl\CategoryRepositoryImpl;
 use App\Repositories\ProductRepositoryInterface;
-use App\Repositories\ProductRepositoryImpl;
+use App\Repositories\Impl\ProductRepositoryImpl;
 
 class AppServiceProvider extends ServiceProvider
 {

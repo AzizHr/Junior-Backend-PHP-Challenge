@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Impl;
+
+use App\Repositories\ProductRepositoryInterface;
 
 use App\Models\Product;
 
@@ -16,7 +18,7 @@ class ProductRepositoryImpl implements ProductRepositoryInterface
 
     public function getAll()
     {
-        return $this->model::with('categories')->get();
+        return $this->model::with('categories')->paginate(3);
     }
 
     public function getById($id)

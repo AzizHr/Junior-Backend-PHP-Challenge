@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Impl;
 
 use App\Models\Category;
+use App\Repositories\CategoryRepositoryInterface;
 
 class CategoryRepositoryImpl implements CategoryRepositoryInterface {
     
@@ -10,6 +11,11 @@ class CategoryRepositoryImpl implements CategoryRepositoryInterface {
 
     public function __construct(Category $model) {
         $this->model = $model;
+    }
+
+    public function getAll()
+    {
+        return $this->model::all();
     }
 
     public function create(array $data)

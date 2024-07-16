@@ -14,6 +14,16 @@ class CategoryController extends Controller {
     }
 
     /**
+     * Display a listing of the categories.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index() {
+        $categories = $this->categoryService->getAllCategories();
+        return response()->json($categories, 200);
+    }
+
+    /**
      * Store a newly created category in storage.
      *
      * @param  \Illuminate\Http\Request  $request

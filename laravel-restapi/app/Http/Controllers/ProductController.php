@@ -48,12 +48,19 @@ class ProductController extends Controller {
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
-            'image' => 'required|string', // Adjusted based on the previous migration
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
+    
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $validatedData['image'] = 'images/'.$imageName;
+        }
+    
         $product = $this->productService->createProduct($validatedData);
         return response()->json($product, 201);
     }
+    
 
     /**
      * Update the specified product in storage.

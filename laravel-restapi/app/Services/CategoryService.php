@@ -12,6 +12,10 @@ class CategoryService {
         $this->categoryRepository = $categoryRepository;
     }
 
+    public function getAllCategories() {
+        return $this->categoryRepository->getAll();
+    }
+
     /**
      * Create a new category.
      *
