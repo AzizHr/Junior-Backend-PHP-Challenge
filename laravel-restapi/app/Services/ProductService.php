@@ -61,4 +61,16 @@ class ProductService {
     public function deleteProduct($id) {
         return $this->productRepository->delete($id);
     }
+
+    public function sortProductsByName() {
+        return $this->productRepository->sortByName();
+    }
+
+    public function sortProductsByPrice() {
+        return $this->productRepository->sortByPrice();
+    }
+
+    public function filterProductsByCategory($categoryId) {
+        return $this->productRepository->filterByCategory($categoryId);
+    }
 }
