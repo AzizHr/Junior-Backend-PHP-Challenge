@@ -24,7 +24,7 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Store a newly created category in storage.
+     * Store a newly created category.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
@@ -39,7 +39,7 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Remove the specified category from storage.
+     * Remove the specified category.
      *
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
