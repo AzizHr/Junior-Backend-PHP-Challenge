@@ -16,12 +16,12 @@ class ProductRepositoryImpl implements ProductRepositoryInterface
 
     public function getAll()
     {
-        return $this->model->all();
+        return $this->model::with('categories')->get();
     }
 
     public function getById($id)
     {
-        return $this->model->find($id);
+        return $this->model::with('categories')->find($id);
     }
 
     public function create(array $data)
@@ -50,17 +50,17 @@ class ProductRepositoryImpl implements ProductRepositoryInterface
 
     public function sortByName()
     {
-        return $this->model->orderBy('name')->get();
+        return $this->model::with('categories')->orderBy('name')->get();
     }
 
     public function sortByPrice()
     {
-        return $this->model->orderBy('price')->get();
+        return $this->model::with('categories')->orderBy('price')->get();
     }
 
     public function filterByCategory($categoryId)
     {
-        return $this->model->whereHas('categories', function ($query) use ($categoryId) {
+        return $this->model::with('categories')->whereHas('categories', function ($query) use ($categoryId) {
             $query->where('id', $categoryId);
         })->get();
     }
