@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
@@ -14,3 +15,5 @@ Route::get('/products/sort/price', [ProductController::class, 'sortByPrice']);
 Route::get('/products/filter/category/{categoryId}', [ProductController::class, 'filterByCategory']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
+
+Route::post('/product-categories', [ProductCategoryController::class, 'store']);
