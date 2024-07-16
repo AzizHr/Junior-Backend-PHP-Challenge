@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -12,3 +13,5 @@ Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 Route::get('/products/sort/name', [ProductController::class, 'sortByName']);
 Route::get('/products/sort/price', [ProductController::class, 'sortByPrice']);
 Route::get('/products/filter/category/{categoryId}', [ProductController::class, 'filterByCategory']);
+
+Route::get('/categories', [CategoryController::class, 'index']);
