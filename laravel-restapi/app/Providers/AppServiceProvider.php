@@ -7,6 +7,8 @@ use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\Impl\CategoryRepositoryImpl;
 use App\Repositories\ProductRepositoryInterface;
 use App\Repositories\Impl\ProductRepositoryImpl;
+use App\Repositories\ProductCategoryRepositoryInterface;
+use App\Repositories\Impl\ProductCategoryRepositoryImpl;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepositoryImpl::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepositoryImpl::class);
+        $this->app->bind(ProductCategoryRepositoryInterface::class, ProductCategoryRepositoryImpl::class);
     }
 
     /**
