@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-interface ProductRepositoryInterface {
+interface CategoryRepositoryInterface {
     public function create(array $data);
     public function delete($id);
 }
