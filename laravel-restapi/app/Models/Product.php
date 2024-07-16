@@ -15,4 +15,11 @@ class Product extends Model
         'price',
         'image'
     ];
+
+    /**
+     * Get the categories associated with the product.
+     */
+    public function categories() {
+        return $this->belongsToMany(Category::class, 'product_categories');
+    }
 }
