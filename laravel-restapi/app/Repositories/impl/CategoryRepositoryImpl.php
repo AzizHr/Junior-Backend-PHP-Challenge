@@ -32,4 +32,9 @@ class CategoryRepositoryImpl implements CategoryRepositoryInterface {
         return false;
     }
 
+    public function getById($id)
+    {
+        return $this->model->find($id);
+    }
+
 }
