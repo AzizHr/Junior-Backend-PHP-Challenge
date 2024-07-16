@@ -90,5 +90,39 @@ class ProductController extends Controller {
         }
         return response()->json(['message' => 'Product not found'], 404);
     }
+
+     /**
+     * Sort products by name.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function sortByName()
+    {
+        $products = $this->productService->sortProductsByName();
+        return response()->json($products);
+    }
+
+    /**
+     * Sort products by price.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function sortByPrice()
+    {
+        $products = $this->productService->sortProductsByPrice();
+        return response()->json($products);
+    }
+
+    /**
+     * Filter products by category.
+     *
+     * @param int $categoryId
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function filterByCategory($categoryId)
+    {
+        $products = $this->productService->filterProductsByCategory($categoryId);
+        return response()->json($products);
+    }
 }
 
