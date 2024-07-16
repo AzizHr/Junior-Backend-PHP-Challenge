@@ -10,7 +10,8 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $filable = [
+    protected $fillable = [
+        'id',
         'name',
         'parent_id'
     ];
