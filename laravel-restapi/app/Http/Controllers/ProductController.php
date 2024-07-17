@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ProductCategoryService;
 use Illuminate\Http\Request;
 use App\Services\ProductService;
 
 class ProductController extends Controller {
 
     protected $productService;
+    protected $productCategoryService;
 
-    public function __construct(ProductService $productService) {
+    public function __construct(ProductService $productService, ProductCategoryService $productCategoryService) {
         $this->productService = $productService;
+        $this->productCategoryService = $productCategoryService;
     }
 
     /**
@@ -49,6 +52,7 @@ class ProductController extends Controller {
             'description' => 'required|string',
             'price' => 'required|numeric',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'category_id' => 'required|exists:categories,id'
         ]);
     
         if ($request->hasFile('image')) {
@@ -57,7 +61,22 @@ class ProductController extends Controller {
             $validatedData['image'] = 'images/'.$imageName;
         }
     
-        $product = $this->productService->createProduct($validatedData);
+        $productToBeStored = [
+            'name' => $validatedData['name'],
+            'description' => $validatedData['description'],
+            'price' => $validatedData['price'],
+            'image' => $validatedData['image']
+        ];
+
+        $product = $this->productService->createProduct($productToBeStored);
+
+        $productCategory = [
+            'product_id' => $product->id,
+            'category_id' => $validatedData['category_id'],
+        ];
+
+        $this->productCategoryService->createProductCategory($productCategory);
+
         return response()->json($product, 201);
     }
     
