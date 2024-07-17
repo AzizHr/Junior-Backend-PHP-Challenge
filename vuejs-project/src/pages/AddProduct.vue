@@ -32,6 +32,15 @@
                 <input type="file" class="form-control" id="image" @change="onFileChange" required>
             </div>
 
+            <div>
+                <label for="category_id" class="form-label mt-4">Category</label>
+                <select v-model="form.category_id" class="form-select">
+                    <!-- <option :value="null" disabled selected>Filter</option> -->
+                    <option v-for="category in categories" :value="category.id" :key="category.id">{{ category.name }}
+                    </option>
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-primary mt-4">Add</button>
         </form>
     </div>
@@ -45,15 +54,29 @@ export default {
     name: "AddProduct",
     data() {
         return {
+            categories: [],
             form: {
                 name: '',
                 description: '',
                 price: null,
-                image: null
+                image: null,
+                category_id: null
             }
         };
     },
+    mounted() {
+        this.fetchCategories();
+    },
     methods: {
+        fetchCategories() {
+            axios.get('http://localhost:8000/api/categories')
+                .then(response => {
+                    this.categories = response.data;
+                })
+                .catch(error => {
+                    console.error('Error fetching categories:', error);
+                });
+        },
         onFileChange(event) {
             this.form.image = event.target.files[0];
         },
@@ -63,6 +86,7 @@ export default {
             formData.append('description', this.form.description);
             formData.append('price', this.form.price);
             formData.append('image', this.form.image);
+            formData.append('category_id', this.form.category_id);
 
             try {
                 const response = await axios.post('http://localhost:8000/api/products', formData, {
